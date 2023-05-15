@@ -34,6 +34,16 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(TAG, "In onCreate. Current value: $currentScore")
 
+        tapMeButton = findViewById(R.id.tapMeButton)
+        gameScoreTextView = findViewById(R.id.gameScoreTextView)
+        timeLeftTextView = findViewById(R.id.timeLeftTextView)
+
+        tapMeButton.setOnClickListener{ view ->
+            val bounceAnimation: Animation = AnimationUtils.loadAnimation(this, R.anim.bounce)
+            view.startAnimation(bounceAnimation)
+            incrementScore()
+        }
+
         if (savedInstanceState != null) {
             currentScore = savedInstanceState.getInt(SCORE_KEY)
             timeLeftOnTimer = savedInstanceState.getLong(TIME_LEFT_KEY)
